@@ -64,5 +64,4 @@ class FibonacciValue(Problema):
         while b <= self.n:
             print(a)
             a, b = b, a + b
-        else:
-            return a
+        return a
