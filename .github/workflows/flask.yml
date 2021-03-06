@@ -2,10 +2,9 @@ name: flask CI
 
 on:
   push:
+    branches: [master]
   pull_request:
-    types:
-      - ready_for_review
-      - review_requested
+    branches: [master]
 
 jobs:
   build:
