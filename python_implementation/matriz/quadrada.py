@@ -89,7 +89,7 @@ def __define_matriz_menor(len_matriz_maior: int) -> list[list[str]]:
     while tamanho >= len_matriz_maior:
         print(f'Valor informado maior que {len_matriz_maior}!')
         tamanho = __define_tamanho(
-            msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
+            msg=f'Defina a ordem de uma matriz quadrada (inteiro menor que {len_matriz_maior})',
         )
     matriz = __cria_matriz_quadrada(tamanho)
     __imprime_matriz(matriz)
