@@ -3,13 +3,9 @@ import math
 
 def cria_matriz_quadrada(tamanho=20):
     matriz = []
-    # FIXME ajustar para 20 apenas
-    if tamanho <= 20:
-        for _ in range(tamanho):
-            linha = ['0' for _ in range(tamanho)]
-            matriz.append(linha)
-    else:
-        raise ValueError('Tamanho deve ser no máximo 20')
+    for _ in range(tamanho):
+        linha = ['0' for _ in range(tamanho)]
+        matriz.append(linha)
     return matriz
 
 
@@ -18,8 +14,7 @@ def diagonais(matriz):
     diagonal_principal: list = []
     diagonal_secundaria: list = []
     top, bottom, right, left = 'B', 'A', 'Y', 'X'
-    # FIXME ajustar para 20 apenas
-    if tamanho <= 20:
+    if tamanho >= 20:
         ponto_medio = math.ceil(tamanho / 2)
         diagonal_principal = [j for j in range(tamanho)]
         diagonal_secundaria = [j for j in range(tamanho)[::-1]]
@@ -33,8 +28,7 @@ def diagonais(matriz):
 
 def quadrantes(matriz, diagonal_p, diagonal_s):
     tamanho = len(matriz)
-    # FIXME ajustar para 20 apenas
-    if tamanho <= 20:
+    if tamanho >= 20:
         for i in range(tamanho):
             elemento_dp = diagonal_p[i]
             elemento_ds = diagonal_s[i]
@@ -53,19 +47,19 @@ def imprime_matriz(matriz):
     try:
         print(f'matriz de tamanho: {len(matriz)}')
         for linha in matriz:
-            print('\t'.join(linha))
+            print('  '.join(linha))
         print('\n')
     except ValueError as e:
         print(e)
 
 
-tam = 6
+tam = 20
 mat = cria_matriz_quadrada(tam)
 dp, ds = diagonais(mat)
 quadrantes(mat, dp, ds)
 imprime_matriz(mat)
 
-tam = 5
+tam = 21
 mat = cria_matriz_quadrada(tam)
 dp, ds = diagonais(mat)
 quadrantes(mat, dp, ds)
