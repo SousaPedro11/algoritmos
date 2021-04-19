@@ -1,7 +1,7 @@
 import math
 
 
-def cria_matriz_quadrada(tamanho=20):
+def __cria_matriz_quadrada(tamanho=20):
     matriz = []
     for _ in range(tamanho):
         linha = ['0' for _ in range(tamanho)]
@@ -9,7 +9,7 @@ def cria_matriz_quadrada(tamanho=20):
     return matriz
 
 
-def diagonais(matriz):
+def __diagonais(matriz):
     tamanho = len(matriz)
     diagonal_principal: list = []
     diagonal_secundaria: list = []
@@ -26,7 +26,7 @@ def diagonais(matriz):
     return diagonal_principal, diagonal_secundaria
 
 
-def quadrantes(matriz, diagonal_p, diagonal_s):
+def __quadrantes(matriz, diagonal_p, diagonal_s):
     tamanho = len(matriz)
     if tamanho >= 20:
         for i in range(tamanho):
@@ -43,7 +43,7 @@ def quadrantes(matriz, diagonal_p, diagonal_s):
                     matriz[i][j] = 'Y'
 
 
-def imprime_matriz(matriz):
+def __imprime_matriz(matriz):
     try:
         print(f'matriz de tamanho: {len(matriz)}')
         for linha in matriz:
@@ -53,14 +53,30 @@ def imprime_matriz(matriz):
         print(e)
 
 
-tam = 20
-mat = cria_matriz_quadrada(tam)
-dp, ds = diagonais(mat)
-quadrantes(mat, dp, ds)
-imprime_matriz(mat)
+def __define_tamanho(msg: str):
+    while True:
+        try:
+            tamanho = int(input(f'{msg}: '))
+            break
+        except ValueError:
+            print('O valor informado não é um inteiro!')
+    return tamanho
 
-tam = 21
-mat = cria_matriz_quadrada(tam)
-dp, ds = diagonais(mat)
-quadrantes(mat, dp, ds)
-imprime_matriz(mat)
+
+def define_matriz_maior():
+    print('MATRIZ MAIOR')
+    tamanho = __define_tamanho(
+        msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
+    )
+    while tamanho < 20:
+        print('Valor informado menor que 20!')
+        tamanho = __define_tamanho(
+            msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
+        )
+    matriz = __cria_matriz_quadrada(tamanho)
+    diagonal_principal, diagonal_secundaria = __diagonais(matriz)
+    __quadrantes(matriz, diagonal_principal, diagonal_secundaria)
+    __imprime_matriz(matriz)
+
+
+define_matriz_maior()
