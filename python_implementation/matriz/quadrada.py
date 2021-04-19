@@ -63,7 +63,7 @@ def __define_tamanho(msg: str):
     return tamanho
 
 
-def define_matriz_maior():
+def __define_matriz_maior():
     print('MATRIZ MAIOR')
     tamanho = __define_tamanho(
         msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
@@ -77,6 +77,24 @@ def define_matriz_maior():
     diagonal_principal, diagonal_secundaria = __diagonais(matriz)
     __quadrantes(matriz, diagonal_principal, diagonal_secundaria)
     __imprime_matriz(matriz)
+    return matriz
 
 
-define_matriz_maior()
+def __define_matriz_menor(len_matriz_maior: int):
+    print('MATRIZ MENOR')
+    tamanho = __define_tamanho(
+        msg=f'Defina a ordem de uma matriz quadrada (inteiro menor que {len_matriz_maior})',
+    )
+    while tamanho >= len_matriz_maior:
+        print(f'Valor informado maior que {len_matriz_maior}!')
+        tamanho = __define_tamanho(
+            msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
+        )
+    matriz = __cria_matriz_quadrada(tamanho)
+    __imprime_matriz(matriz)
+    return matriz
+
+
+if __name__ == '__main__':
+    matriz_maior = __define_matriz_maior()
+    matriz_menor = __define_matriz_menor(len(matriz_maior))
