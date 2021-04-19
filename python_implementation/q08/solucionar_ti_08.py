@@ -26,7 +26,8 @@ class Numero:
         """
         try:
             numero = self.ler_numero()
-            print(f'O numero {numero} possui {self.digitos_numero(numero)} digitos.')
+            print(
+                f'O numero {numero} possui {self.digitos_numero(numero)} digitos.')
         except ValueError as e:
             print(e)
 

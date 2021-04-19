@@ -3,7 +3,8 @@ Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 12
 Descriçao do problema:
-    Utilizando o módulo re, fazer uma função que retorne a "string limpa", ou seja, retire qualquer caracter especial, deixando somente letras (A-Z, a-z), números (0-9) e espaço (" ").
+    Utilizando o módulo re, fazer uma função que retorne a "string limpa", ou seja,
+    retire qualquer caracter especial, deixando somente letras (A-Z, a-z), números (0-9) e espaço (" ").
 A função receberá um string e retornara uma "string limpa", ou seja, após retirar os caracteres inválidos. Exemplos
 IN: "2021-03-01T11:37:30";   OUT: "20210301113730"
 IN: "Jose Maria. -61";   OUT: "Jose Maria 61"

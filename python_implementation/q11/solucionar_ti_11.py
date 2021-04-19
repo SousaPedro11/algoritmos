@@ -13,7 +13,8 @@ Sendo:
 
 ** Dia, hora e minutos sempre com 2 dígitos
 
-A função deve receber uma string qualquer e validar se ela atende ao padrão descrito acima e retornar verdadeiro, ou caso não atenda, retornar falso.
+A função deve receber uma string qualquer e validar se ela atende ao padrão descrito
+acima e retornar verdadeiro, ou caso não atenda, retornar falso.
 Exemplo:   s = '06MAY:1700' -> True
 Exemplo:   s = '06/05:1700' -> False
 

@@ -38,7 +38,8 @@ class Alunos:
 
     def validar_data(self, date_str):
         try:
-            data = datetime.strptime(date_str, '%d/%m/%Y').strftime("%d de %B de %Y")
+            data = datetime.strptime(
+                date_str, '%d/%m/%Y').strftime("%d de %B de %Y")
         except ValueError:
             return 'NULL'
         return data

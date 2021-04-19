@@ -4,9 +4,11 @@ Data: 17/03/2021
 Numero da questao: Questão 10
 Descriçao do problema:
     mplemente uma classe chamada Carro que atenda aos requisitos abaixo.
-    a. Um veículo tem um certo consumo de combustível (medidos em km / litro) e uma certa quantidade de combustível no tanque.
+    a. Um veículo tem um certo consumo de combustível (medidos em km / litro)
+    e uma certa quantidade de combustível no tanque.
     b. O consumo é especificado no construtor e o nível de combustível inicial é 0.
-    c. Forneça um método andar( ) que simule o ato de dirigir o veículo por uma certa distância, reduzindo o nível de combustível no tanque de gasolina.
+    c. Forneça um método andar( ) que simule o ato de dirigir o veículo por uma
+    certa distância, reduzindo o nível de combustível no tanque de gasolina.
     d. Forneça um método obterGasolina( ), que retorna o nível atual de combustível.
     e. Forneça um método adicionarGasolina( ), para abastecer o tanque.
 Descricao da solucao:
@@ -49,7 +51,8 @@ class Carro:
         consumido = distancia / self.consumo
         if consumido > self.combustivel:
             percorrido = self.consumo * self.combustivel
-            raise Exception(f'É possível percorrer apenas {percorrido} Km com a quantidade de combustível atual')
+            raise Exception(
+                f'É possível percorrer apenas {percorrido} Km com a quantidade de combustível atual')
         print(f'Carro andou {distancia} Km')
         print(f'Carro consumiu {consumido:.2f} l')
         self.combustivel -= consumido

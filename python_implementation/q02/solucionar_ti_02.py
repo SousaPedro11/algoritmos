@@ -65,7 +65,8 @@ class LerDados:
             salario = self._ler_salario()
             sexo = self._ler_sexo()
             e_civil = self._ler_estado_civil()
-            resultado = self._obtem_resultado(nome, idade, salario, sexo, e_civil)
+            resultado = self._obtem_resultado(
+                nome, idade, salario, sexo, e_civil)
             print('dados lidos com sucesso')
             return resultado.__str__()
         except ValueError as e:
