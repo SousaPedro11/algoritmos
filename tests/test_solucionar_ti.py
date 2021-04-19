@@ -1,5 +1,6 @@
-from python_implementation.solucionar_ti import MediaAluno
 from io import StringIO
+
+from python_implementation.q01.solucionar_ti_01 import MediaAluno
 
 
 class TestMedia:
