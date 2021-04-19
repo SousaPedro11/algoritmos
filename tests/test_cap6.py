@@ -1,0 +1,12 @@
+from io import StringIO
+from random import randint
+
+from python_implementation.cap_seis import CapSeisUm
+
+
+class TestCap6:
+    def test_cap_seis_um(self, monkeypatch):
+        user_input = randint(-10, 10)
+        monkeypatch.setattr('sys.stdin', StringIO(f'{user_input}\n'))
+        output = CapSeisUm().solv()
+        assert output == user_input - 1

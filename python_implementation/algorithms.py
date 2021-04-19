@@ -1,18 +1,8 @@
-from abc import ABC, ABCMeta, abstractmethod
 from functools import reduce
-
-
-class Problema(ABC):
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
-    def solv(self):
-        raise NotImplementedError('Falta implementar')
+from python_implementation.base import Problema
 
 
 class Fatorial(Problema):
-    def __init__(self, n: int) -> None:
-        self.n = n
 
     def solv(self) -> int:
         if self.n <= 1:
@@ -25,8 +15,6 @@ class Fatorial(Problema):
 
 
 class FatorialReduce(Problema):
-    def __init__(self, n: int) -> None:
-        self.n = n
 
     def solv(self):
         return 1 if self.n in (0, 1) else reduce(
@@ -34,8 +22,6 @@ class FatorialReduce(Problema):
 
 
 class Fibonacci(Problema):
-    def __init__(self, n: int) -> None:
-        self.n = n
 
     def solv(self):
         a, b = 0, 1
@@ -46,8 +32,6 @@ class Fibonacci(Problema):
 
 
 class FibonacciLambda(Problema):
-    def __init__(self, n: int) -> None:
-        self.n = n
 
     def solv(self):
         def fib(n): return reduce(lambda x, _: [
@@ -56,8 +40,6 @@ class FibonacciLambda(Problema):
 
 
 class FibonacciValue(Problema):
-    def __init__(self, n: int) -> None:
-        self.n = n
 
     def solv(self):
         a, b = 0, 1
