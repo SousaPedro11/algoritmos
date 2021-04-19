@@ -1,7 +1,7 @@
 import math
 
 
-def __cria_matriz_quadrada(tamanho=20):
+def __cria_matriz_quadrada(tamanho: int = 20) -> list[list[str]]:
     matriz = []
     for _ in range(tamanho):
         linha = ['0' for _ in range(tamanho)]
@@ -9,11 +9,12 @@ def __cria_matriz_quadrada(tamanho=20):
     return matriz
 
 
-def __diagonais(matriz):
+def __diagonais(matriz: list[list[str]]) -> tuple[list, list]:
     tamanho = len(matriz)
-    diagonal_principal: list = []
-    diagonal_secundaria: list = []
+    diagonal_principal = []
+    diagonal_secundaria = []
     top, bottom, right, left = 'B', 'A', 'Y', 'X'
+
     if tamanho >= 20:
         ponto_medio = math.ceil(tamanho / 2)
         diagonal_principal = [j for j in range(tamanho)]
@@ -26,7 +27,7 @@ def __diagonais(matriz):
     return diagonal_principal, diagonal_secundaria
 
 
-def __quadrantes(matriz, diagonal_p, diagonal_s):
+def __quadrantes(matriz: list[list[str]], diagonal_p: list, diagonal_s: list) -> None:
     tamanho = len(matriz)
     if tamanho >= 20:
         for i in range(tamanho):
@@ -43,9 +44,9 @@ def __quadrantes(matriz, diagonal_p, diagonal_s):
                     matriz[i][j] = 'Y'
 
 
-def __imprime_matriz(matriz):
+def __imprime_matriz(matriz: list[list[str]]) -> None:
     try:
-        print(f'matriz de tamanho: {len(matriz)}')
+        print(f'Matriz de tamanho: {len(matriz)}')
         for linha in matriz:
             print('  '.join(linha))
         print('\n')
@@ -53,7 +54,7 @@ def __imprime_matriz(matriz):
         print(e)
 
 
-def __define_tamanho(msg: str):
+def __define_tamanho(msg: str) -> int:
     while True:
         try:
             tamanho = int(input(f'{msg}: '))
@@ -63,7 +64,7 @@ def __define_tamanho(msg: str):
     return tamanho
 
 
-def __define_matriz_maior():
+def __define_matriz_maior() -> list[list[str]]:
     print('MATRIZ MAIOR')
     tamanho = __define_tamanho(
         msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
@@ -80,7 +81,7 @@ def __define_matriz_maior():
     return matriz
 
 
-def __define_matriz_menor(len_matriz_maior: int):
+def __define_matriz_menor(len_matriz_maior: int) -> list[list[str]]:
     print('MATRIZ MENOR')
     tamanho = __define_tamanho(
         msg=f'Defina a ordem de uma matriz quadrada (inteiro menor que {len_matriz_maior})',
@@ -95,6 +96,26 @@ def __define_matriz_menor(len_matriz_maior: int):
     return matriz
 
 
-if __name__ == '__main__':
+def __gera_matriz_concentrica(matriz_maior: list[list[str]], matriz_menor: list[list[str]]) -> None:
+    if len(matriz_menor) > len(matriz_maior):
+        raise ValueError('Matriz menor declarada no local errado!')
+    print('MATRIZ CONCENTRICA')
+    maior = matriz_maior.copy()
+    menor = matriz_menor.copy()
+    ponto_medio_maior = math.ceil(len(maior) / 2)
+    ponto_medio_menor = math.ceil(len(menor) / 2)
+    diferenca = ponto_medio_maior - ponto_medio_menor
+    for i, linha in enumerate(menor):
+        for j, coluna in enumerate(linha):
+            maior[i + diferenca][j + diferenca] = coluna
+    __imprime_matriz(maior)
+
+
+def solucao_problema():
     matriz_maior = __define_matriz_maior()
     matriz_menor = __define_matriz_menor(len(matriz_maior))
+    __gera_matriz_concentrica(matriz_maior, matriz_menor)
+
+
+if __name__ == '__main__':
+    solucao_problema()
