@@ -142,6 +142,11 @@ def write_file(data: dict):
 
 
 def write_prompt(data: dict):
+    """
+    Imprime os dados na tela
+    :param data: Dados a serem impressos
+    :return: None
+    """
     # transforma os dados em string para a saida
     str_data = prepare_data_to_output(data)
     # percorre a lista de dados imprimindo-os na tela
