@@ -43,8 +43,30 @@ def calculate_group_percent(group: list):
     [percent_dict.setdefault(f'{element % 10}', []).append(element) for element in group if element % 10 in keys]
     if '5' not in percent_dict.keys():
         percent_dict['5'] = []
+    min_ocorrence, max_ocorrence = percent_dict[str(min(keys))], percent_dict[str(max(keys))]
     percent_dict = collections.OrderedDict(sorted(percent_dict.items()))
-    return {key: len(value) * 100 / len(group) for key, value in percent_dict.items()}
+    percent_dict = {key: len(value) * 100 / len(group) for key, value in percent_dict.items()}
+    percent_dict['max'], percent_dict['min'] = max_ocorrence.__len__(), min_ocorrence.__len__()
+    return percent_dict
+
+
+def data_to_str(data: dict):
+    for key, value in data.items():
+        str_value = ', '.join(f'{x:02d}' if not isinstance(x, float) else f'{x:0.5f}' for x in value.values())
+        data[key] = str_value
+
+
+def write_file(data: dict):
+    headers = ['Intervalo, GPO1, GPO3, GPO5, GPO7, GPO9, Maior, Menor']
+    data_to_str(data)
+    str_data = headers
+    str_data.extend([', '.join(x) for x in zip(data.keys(), data.values())])
+    with open('resultados.txt', 'w', encoding='utf-8') as f:
+        f.writelines('\n'.join(str_data))
+
+
+def calculate_avg(dict_percent: dict):
+    media = {}
 
 
 class TestPrime(TestCase):
@@ -55,8 +77,7 @@ class TestPrime(TestCase):
     def test_primes(self):
         p = gen_primes(1000)
         primes = [i for i in p]
-        dict_percent = {}
         prime_groups = gen_groups(primes)
-        for key, values in prime_groups.items():
-            dict_percent[key] = calculate_group_percent(values)
-        print(dict_percent)
+        dict_percent = {key: calculate_group_percent(values) for key, values in prime_groups.items()}
+        calculate_avg(dict_percent)
+        write_file(dict_percent)
