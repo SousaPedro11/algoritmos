@@ -67,7 +67,7 @@ def solucao():
     print('TRIANGULO DE PASCAL')
     # imprime triangulo de pascal
     print_pascal_triangle(pascal)
-    print('\nSOMA DOS ELEMENTOS')
+    print('\nSOMA DOS COEFICIENTES')
     # calcula soma dos elementos de cada linha
     print_sum_each_row(pascal)
 
