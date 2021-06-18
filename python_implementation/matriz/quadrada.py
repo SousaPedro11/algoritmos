@@ -1,7 +1,9 @@
 import math
 
+from typing import List, Tuple
 
-def __cria_matriz_quadrada(tamanho: int = 20) -> list[list[str]]:
+
+def __cria_matriz_quadrada(tamanho: int = 20) -> List[List[str]]:
     matriz = []
     for _ in range(tamanho):
         linha = ['0' for _ in range(tamanho)]
@@ -9,7 +11,7 @@ def __cria_matriz_quadrada(tamanho: int = 20) -> list[list[str]]:
     return matriz
 
 
-def __diagonais(matriz: list[list[str]]) -> tuple[list, list]:
+def __diagonais(matriz: List[List[str]]) -> Tuple[list, list]:
     tamanho = len(matriz)
     diagonal_principal = []
     diagonal_secundaria = []
@@ -27,7 +29,7 @@ def __diagonais(matriz: list[list[str]]) -> tuple[list, list]:
     return diagonal_principal, diagonal_secundaria
 
 
-def __quadrantes(matriz: list[list[str]], diagonal_p: list, diagonal_s: list) -> None:
+def __quadrantes(matriz: List[List[str]], diagonal_p: list, diagonal_s: list) -> None:
     tamanho = len(matriz)
     if tamanho >= 20:
         for i in range(tamanho):
@@ -44,7 +46,7 @@ def __quadrantes(matriz: list[list[str]], diagonal_p: list, diagonal_s: list) ->
                     matriz[i][j] = 'Y'
 
 
-def __imprime_matriz(matriz: list[list[str]]) -> None:
+def __imprime_matriz(matriz: List[List[str]]) -> None:
     try:
         print(f'Matriz de tamanho: {len(matriz)}')
         for linha in matriz:
@@ -64,7 +66,7 @@ def __define_tamanho(msg: str) -> int:
     return tamanho
 
 
-def __define_matriz_maior() -> list[list[str]]:
+def __define_matriz_maior() -> List[List[str]]:
     print('MATRIZ MAIOR')
     tamanho = __define_tamanho(
         msg='Defina a ordem de uma matriz quadrada (inteiro maior ou igual a 20)',
@@ -81,7 +83,7 @@ def __define_matriz_maior() -> list[list[str]]:
     return matriz
 
 
-def __define_matriz_menor(len_matriz_maior: int) -> list[list[str]]:
+def __define_matriz_menor(len_matriz_maior: int) -> List[List[str]]:
     print('MATRIZ MENOR')
     tamanho = __define_tamanho(
         msg=f'Defina a ordem de uma matriz quadrada (inteiro menor que {len_matriz_maior})',
@@ -96,7 +98,7 @@ def __define_matriz_menor(len_matriz_maior: int) -> list[list[str]]:
     return matriz
 
 
-def __gera_matriz_concentrica(matriz_maior: list[list[str]], matriz_menor: list[list[str]]) -> None:
+def __gera_matriz_concentrica(matriz_maior: List[List[str]], matriz_menor: List[List[str]]) -> None:
     if len(matriz_menor) > len(matriz_maior):
         raise ValueError('Matriz menor declarada no local errado!')
     print('MATRIZ CONCENTRICA')
