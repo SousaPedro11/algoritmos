@@ -1,7 +1,8 @@
+import os.path
 import random
 from typing import List
+
 import numpy as np
-from scipy import sparse
 
 
 def __imprime_matriz(matriz: List[List]) -> None:
@@ -18,7 +19,7 @@ def __define_matriz(tamanho: int) -> List[List]:
     """
     Metodo de definicao da matriz.
 
-    :return:
+    :return: Matriz em forma de lista
     """
     _matriz = __cria_matriz_quadrada(tamanho)
     return _matriz
@@ -31,15 +32,14 @@ def __sparse_elements(ordem: int, percent: int = 20):
     :param percent: Percentual inteiro de nao nulos
     :return: Matriz em estrutura de lista de listas
     """
-    _length = round(ordem**2 * percent / 100)
-    values = np.random.randint(low=1, high=9, size=_length)
-    rows = np.random.randint(low=0, high=ordem, size=_length)
-    columns = np.random.randint(low=0, high=ordem, size=_length)
-    # falta ajustar
-    cords = np.array(set(zip(rows, columns)))
-    print(values.size, rows.size, columns.size, cords.size)
+    _length = round(ordem ** 2 * percent / 100)
+    values = list(np.random.randint(low=1, high=9, size=_length))
+    rows = list(np.random.randint(low=0, high=ordem, size=_length))
+    columns = list(np.random.randint(low=0, high=ordem, size=_length))
+
+    cords = set(zip(rows, columns))
     while len(cords) < _length:
-        cords.ap((random.randrange(ordem), random.randrange(ordem)))
+        cords.add((random.randrange(ordem), random.randrange(ordem)))
     _sparse = [[t[0], t[1], v] for t, v in zip(cords, values)]
     return _sparse
 
@@ -64,19 +64,70 @@ def __cria_matriz_quadrada(tamanho: int, sparse_elements: List[List] = None):
     return _matriz
 
 
+def salva_arquivo(element: List, name: str):
+    """
+    Salva o arquivo com cada valor da lista em uma linha
+    :param element: Lista de elementos
+    :param name: Nome do arquivo
+    :return: None
+    """
+    with open(name, 'w', encoding='utf-8') as f:
+        f.writelines('\n'.join(str(x) for x in element))
+
+
+def imprime_comparativos_arquivo(name_arq_1: str, name_arq_2: str):
+    """
+    Compara quantos % um arquivo e maior que outro
+    :param name_arq_1:
+    :param name_arq_2:
+    :return: None
+    """
+    try:
+        size_file_1 = os.path.getsize(name_arq_1)
+        size_file_2 = os.path.getsize(name_arq_2)
+        comparativo = 100 - (min(size_file_1, size_file_2) * 100 / max(size_file_1, size_file_2))
+        print(f'Arquivo maior é {comparativo}% maior que o outro')
+    except Exception as e:
+        print(e.__str__())
+
+
+def atualiza_matriz(matrix: List[List], sparce: List[List]):
+    """
+    Atualiza os elementos de uma matriz a partir de uma lista de coordenadas-valor
+    :param matrix: Matriz a ser atualizada
+    :param sparce: Lista da coordenada-valor
+    :return: Matriz atualizada
+    """
+    if sparce:
+        for cord in sparce:
+            matrix[cord[0]][cord[1]] = cord[2]
+
+    return matrix
+
+
 def solucao_problema():
+    # questao a, b, c e d
+    # define ordem da matriz
     ordem_matriz = 10000
+    # cria lista de elementos nao nulos de uma matriz esparsa
     _sparse_elements = __sparse_elements(ordem_matriz, 20)
+    # cria matriz esparsa a partir da lista de elementos
     _matrix = __cria_matriz_quadrada(ordem_matriz, _sparse_elements)
-    __imprime_matriz(_matrix)
+    # define nome dos arquivos
+    filename_matrix = 'arquivoA.txt'
+    filename_sparse_elements = 'arquivoB.txt'
+    # salva matriz e lista de elementos nos respectivos arquivos
+    salva_arquivo(_matrix, filename_matrix)
+    salva_arquivo(_sparse_elements, filename_sparse_elements)
+    # imprime o comparativo dos tamanhos dos arquivos mostrando quantos % é maior
+    imprime_comparativos_arquivo(filename_matrix, filename_sparse_elements)
+    # define uma outra lista
+    _sparse_elements_2 = __sparse_elements(ordem_matriz, 10)
+    # atualiza a matriz a partir da segunda lista
+    _matrix = atualiza_matriz(_matrix, _sparse_elements_2)
+    # salva a matriz atualizada
+    salva_arquivo(_matrix, 'arquivoC.txt')
 
 
 if __name__ == '__main__':
     solucao_problema()
-    # N1 = 10000000  # 1e8
-    # N2 = 5000
-    # rows = np.arange(N1)
-    # cols = (np.floor(np.random.permutation(N1) / float(N1) * N2)).astype(int)
-    # w = np.ones(N1)
-    # conn_matrix = sparse.csr_matrix((w, (rows, cols)), shape=(N1, N2), dtype=int)
-    # print(conn_matrix)
