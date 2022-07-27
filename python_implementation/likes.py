@@ -3,8 +3,8 @@ class Programa:
     Super classe
     """
 
-    def __init__(self, nome: str, ano: int):
-        self._nome = nome.title()
+    def __init__(self, nome: str = None, ano: int = None) -> None:
+        self._nome = nome.title() if nome else None
         self.ano = ano
         self._likes: int = 0
 
@@ -35,7 +35,7 @@ class Filme(Programa):
     Classe filha
     """
 
-    def __init__(self, nome: str, ano: int, duracao: int):
+    def __init__(self, nome: str = None, ano: int = None, duracao: int = None):
         # com esta ação estamos usando nome e ano da classe mãe Programa
         super().__init__(nome, ano)
         self.duracao = duracao
