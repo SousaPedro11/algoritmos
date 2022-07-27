@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 11
@@ -26,13 +26,12 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 from datetime import datetime
 
 
 class Alunos:
-
     def solv(self, date_str: str):
         """
         Método que soluciona o problema
@@ -45,13 +44,13 @@ class Alunos:
 
     def validar_data(self, date_str):
         try:
-            datetime.strptime(date_str.lower(), '%d%b:%H%M')
+            datetime.strptime(date_str.lower(), "%d%b:%H%M")
         except ValueError:
             return False
         return True
 
 
-if __name__ == '__main__':
-    Alunos().solv('06MAY:1700')
-    Alunos().solv('06/05:1700')
-    Alunos().solv('17MAR:2348')
+if __name__ == "__main__":
+    Alunos().solv("06MAY:1700")
+    Alunos().solv("06/05:1700")
+    Alunos().solv("17MAR:2348")

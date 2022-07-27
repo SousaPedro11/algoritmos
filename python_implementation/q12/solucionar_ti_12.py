@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 12
@@ -17,12 +17,11 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 import re
 
 
 class StringSelecionar:
-
     def solv(self, date_str: str):
         """
         Método que soluciona o problema
@@ -39,7 +38,7 @@ class StringSelecionar:
         return string
 
 
-if __name__ == '__main__':
-    StringSelecionar().solv('2021-03-01T11:37:30')
-    StringSelecionar().solv('Jose Maria. -61')
-    StringSelecionar().solv('17MAR:2348')
+if __name__ == "__main__":
+    StringSelecionar().solv("2021-03-01T11:37:30")
+    StringSelecionar().solv("Jose Maria. -61")
+    StringSelecionar().solv("17MAR:2348")

@@ -1,5 +1,11 @@
 import unittest
-from python_implementation.algorithms import Fatorial, FatorialReduce, Fibonacci, FibonacciLambda, FibonacciValue
+from python_implementation.algorithms import (
+    Fatorial,
+    FatorialReduce,
+    Fibonacci,
+    FibonacciLambda,
+    FibonacciValue,
+)
 
 
 class TestFatorial(unittest.TestCase):

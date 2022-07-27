@@ -24,9 +24,9 @@ class Programa:
         self._nome = novo_nome.title()
 
     def __str__(self) -> str:
-        nome: str = f'\nNome: {self._nome}\n'
-        ano: str = f'Ano: {self.ano}\n'
-        like: str = f'Likes: {self._likes} Likes\n'
+        nome: str = f"\nNome: {self._nome}\n"
+        ano: str = f"Ano: {self.ano}\n"
+        like: str = f"Likes: {self._likes} Likes\n"
         return nome + ano + like
 
 
@@ -41,14 +41,5 @@ class Filme(Programa):
         self.duracao = duracao
 
     def __str__(self) -> str:
-        duracao: str = f'Duração: {self.duracao} min\n'
+        duracao: str = f"Duração: {self.duracao} min\n"
         return super(Filme, self).__str__() + duracao
-
-
-programa = Programa('TV Cruj', 1998)
-programa.dar_like()
-print(programa)
-
-filme = Filme('Careca de trança', 2000, 120)
-(lambda x: filme.dar_like(), range(10))()
-print(filme)

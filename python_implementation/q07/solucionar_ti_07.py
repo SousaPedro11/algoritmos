@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 07
@@ -17,15 +17,14 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 import locale
 from datetime import datetime
 
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
 
 
 class Alunos:
-
     def solv(self, date_str: str):
         """
         Método que soluciona o problema
@@ -38,13 +37,12 @@ class Alunos:
 
     def validar_data(self, date_str):
         try:
-            data = datetime.strptime(
-                date_str, '%d/%m/%Y').strftime("%d de %B de %Y")
+            data = datetime.strptime(date_str, "%d/%m/%Y").strftime("%d de %B de %Y")
         except ValueError:
-            return 'NULL'
+            return "NULL"
         return data
 
 
-if __name__ == '__main__':
-    Alunos().solv('17/03/2021')
-    Alunos().solv('17/00/2021')
+if __name__ == "__main__":
+    Alunos().solv("17/03/2021")
+    Alunos().solv("17/00/2021")

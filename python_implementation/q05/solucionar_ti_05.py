@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 05
@@ -22,11 +22,10 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Notas:
-
     def __init__(self):
         self.notas: list = []
 
@@ -37,18 +36,18 @@ class Notas:
         try:
             self.ler_notas()
             print()
-            print(f'Numero de valores lidos: {len(self.notas)}')
-            print('Valores na ordem de leitura: ')
-            print(', '.join(str(x) for x in self.notas))
-            print('Valores na ordem inversa:')
+            print(f"Numero de valores lidos: {len(self.notas)}")
+            print("Valores na ordem de leitura: ")
+            print(", ".join(str(x) for x in self.notas))
+            print("Valores na ordem inversa:")
             for e in self.notas[::-1]:
                 print(e)
-            print(f'Soma dos valores: {sum(self.notas)}')
+            print(f"Soma dos valores: {sum(self.notas)}")
             media = self.media_notas()
-            print(f'Média notas: {media}')
-            print(f'Quantidade acima da média: {self.qte_acima_media(media)}')
-            print(f'Quantidade abaixo de 7: {self.abaixo_sete()}')
-            print('\nFim de execução')
+            print(f"Média notas: {media}")
+            print(f"Quantidade acima da média: {self.qte_acima_media(media)}")
+            print(f"Quantidade abaixo de 7: {self.abaixo_sete()}")
+            print("\nFim de execução")
             return self.notas
         except ValueError as e:
             print(e)
@@ -57,14 +56,14 @@ class Notas:
         count = 0
         while True:
             count += 1
-            nota = float(input(f'Nota (0 a 10) {count}: '))
+            nota = float(input(f"Nota (0 a 10) {count}: "))
             if nota == -1 and len(self.notas) == 0:
-                print('insira ao menos um valor')
+                print("insira ao menos um valor")
                 continue
             elif nota == -1:
                 break
             elif not 0 <= nota <= 10:
-                print('nota não contabilizada (somente de 0 a 10)')
+                print("nota não contabilizada (somente de 0 a 10)")
                 continue
             else:
                 self.notas.append(nota)
@@ -95,5 +94,5 @@ class Notas:
         return count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Notas().solv()

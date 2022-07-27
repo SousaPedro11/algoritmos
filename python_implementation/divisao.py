@@ -1,12 +1,18 @@
-def divisao(num1: int, num2: int) -> float:
-    return num1/num2
+from python_implementation.base import Problema
 
 
-a = int(input('Informe o dividendo: '))
-b = int(input('Informe o divisor: '))
+class Divisao(Problema):
+    def __init__(self) -> None:
+        self.num1 = None
+        self.num2 = None
 
-c = divisao(a, b)
-
-print('\nRESULTADO')
-print(f'Sem formatação:\n{a}/{b} = {c}\n')
-print(f'Com formatação:\n{a}/{b} = {c:.2f}')
+    def solv(self):
+        try:
+            self.num1 = int(input("Informe um valor inteiro: "))
+            self.num2 = int(input("Informe um valor inteiro: "))
+            divisao = self.num1 / self.num2
+            print(f"\nDivisão de {self.num1} por {self.num2}: {divisao}")
+            return divisao
+        except ZeroDivisionError as e:
+            print(e)
+            raise e

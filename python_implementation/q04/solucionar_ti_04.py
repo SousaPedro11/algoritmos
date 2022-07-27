@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 04
@@ -17,11 +17,10 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Pessoas:
-
     def __init__(self, qte_pessoas: int = 5):
         self.qte_pessoas = qte_pessoas
         self.pessoas: list = []
@@ -43,28 +42,28 @@ class Pessoas:
 
     def ler_pessoa(self, index) -> dict:
         pessoa = {}
-        nome = ''
+        nome = ""
         idade = -1
         altura = -1
-        print(f'\nPessoa {index}')
+        print(f"\nPessoa {index}")
         while len(nome) < 4:
-            nome = input('Informe o nome da pessoa: ')
+            nome = input("Informe o nome da pessoa: ")
 
         while idade < 0:
             try:
-                idade = int(input('Informe a idade: '))
+                idade = int(input("Informe a idade: "))
             except ValueError:
                 continue
 
         while not 0.30 < altura <= 3.0:
             try:
-                altura = float(input('Informe a altura: '))
+                altura = float(input("Informe a altura: "))
             except ValueError:
                 continue
 
-        pessoa['nome'] = nome
-        pessoa['idade'] = idade
-        pessoa['altura'] = altura
+        pessoa["nome"] = nome
+        pessoa["idade"] = idade
+        pessoa["altura"] = altura
 
         return pessoa
 
@@ -86,12 +85,12 @@ class Pessoas:
             print(f'Nome: {p.get("nome")}')
             print(f'Idade: {p.get("idade")}')
             print(f'Altura: {p.get("altura")}')
-            if p.get('idade') < 18:
-                print('OBS: menor de idade')
+            if p.get("idade") < 18:
+                print("OBS: menor de idade")
 
     def ordena_por_idade(self, pessoas: list) -> list:
-        return sorted(pessoas, key=lambda i: i['idade'])
+        return sorted(pessoas, key=lambda i: i["idade"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Pessoas().solv()

@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 06
@@ -15,24 +15,23 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Alunos:
-
     def solv(self):
         """
         Método que soluciona o problema
         """
         try:
-            caminho = 'alunos.csv'
+            caminho = "alunos.csv"
             alunos = self.popula_alunos(self.ler_csv(caminho))
             self.mostra_alunos_13_menor_media(alunos)
         except ValueError as e:
             print(e)
 
     def ler_csv(self, path: str):
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             registros = f.readlines()
         return registros
 
@@ -47,15 +46,15 @@ class Alunos:
     def popula_alunos(self, registros):
         alunos = []
         for r in registros:
-            idade, altura = r.split(';')
+            idade, altura = r.split(";")
             idade, altura = idade.strip(), altura.strip()
             if self.is_number(idade, altura):
                 idade, altura = int(idade), float(altura)
-                alunos.append({'idade': idade, 'altura': altura})
+                alunos.append({"idade": idade, "altura": altura})
         return alunos
 
     def calcula_media_alturas(self, alunos):
-        alturas = [a['altura'] for a in alunos]
+        alturas = [a["altura"] for a in alunos]
         media_altura = sum(alturas) / len(alturas)
         return media_altura
 
@@ -63,12 +62,12 @@ class Alunos:
         count = 0
         media_altura = self.calcula_media_alturas(alunos)
         for a in alunos:
-            if a['idade'] > 13 and a['altura'] < media_altura:
+            if a["idade"] > 13 and a["altura"] < media_altura:
                 print(a)
                 count += 1
-        print(f'Média altura: {media_altura}')
-        print(f'Quantidade alunos > 13 anos e altura abaixo da média: {count}')
+        print(f"Média altura: {media_altura}")
+        print(f"Quantidade alunos > 13 anos e altura abaixo da média: {count}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Alunos().solv()

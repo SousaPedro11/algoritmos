@@ -31,8 +31,8 @@ def __imprime_matriz(matriz: List[List[str]]) -> None:
     try:
         # print(f'Matriz de tamanho: {len(matriz)}')
         for linha in matriz:
-            print('  '.join(linha))
-        print('\n')
+            print("  ".join(linha))
+        print("\n")
     except ValueError as e:
         print(e)
 
@@ -46,10 +46,10 @@ def __define_tamanho(msg: str) -> int:
     """
     while True:
         try:
-            tamanho = int(input(f'{msg}: '))
+            tamanho = int(input(f"{msg}: "))
             break
         except ValueError:
-            print('O valor informado não é um inteiro!')
+            print("O valor informado não é um inteiro!")
     return tamanho
 
 
@@ -61,12 +61,12 @@ def __define_matriz_maior() -> List[List[str]]:
     """
     # print('MATRIZ MAIOR')
     _tamanho = __define_tamanho(
-        msg=f'Defina a ordem de uma matriz quadrada (de 10 a 20)',
+        msg="Defina a ordem de uma matriz quadrada (de 10 a 20)",
     )
     while _tamanho < 10 or _tamanho > 20:
-        print(f'Valor informado maior que fora do intervalo!')
+        print("Valor informado maior que fora do intervalo!")
         _tamanho = __define_tamanho(
-            msg=f'Defina a ordem de uma matriz quadrada (de 10 a 20)',
+            msg="Defina a ordem de uma matriz quadrada (de 10 a 20)",
         )
     matriz = __cria_matriz_quadrada(_tamanho)
     __imprime_matriz(matriz)
@@ -99,8 +99,10 @@ def __busca_elemento(matriz_maior: list, matriz_menor: list, i: int = 0):
         return cordinates
     else:
         for c in range(max_indice):
-            matriz_teste = [[matriz_maior[i][c], matriz_maior[i][c + 1]],
-                            [matriz_maior[i + 1][c], matriz_maior[i + 1][c + 1]]]
+            matriz_teste = [
+                [matriz_maior[i][c], matriz_maior[i][c + 1]],
+                [matriz_maior[i + 1][c], matriz_maior[i + 1][c + 1]],
+            ]
             if matriz_teste == matriz_menor:
                 cordinates.append((i, c))
         return __busca_elemento(matriz_maior, matriz_menor, i + 1)
@@ -114,15 +116,15 @@ def __analise_resultado(_resultado, _matriz_menor):
     :param _matriz_menor:
     :return:
     """
-    print(f'padrao {_matriz_menor}')
-    _lista = ' '.join([' '.join(linha) for linha in _matriz_menor])
-    print(f'lista {_lista}')
+    print(f"padrao {_matriz_menor}")
+    _lista = " ".join([" ".join(linha) for linha in _matriz_menor])
+    print(f"lista {_lista}")
     if _resultado:
-        print(f'Padrao encontrado nas coordenadas (linha, coluna): {_resultado}')
+        print(f"Padrao encontrado nas coordenadas (linha, coluna): {_resultado}")
     else:
-        print('Padrao nao encontrado')
+        print("Padrao nao encontrado")
 
-    print(f'numero de padrao(oes) encontrado(s): {len(_resultado)}')
+    print(f"numero de padrao(oes) encontrado(s): {len(_resultado)}")
 
 
 def solucao_problema():
@@ -136,5 +138,5 @@ def solucao_problema():
     __analise_resultado(resultado_busca, matriz_menor)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solucao_problema()

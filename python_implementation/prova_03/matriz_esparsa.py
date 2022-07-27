@@ -7,10 +7,10 @@ import numpy as np
 
 def __imprime_matriz(matriz: List[List]) -> None:
     try:
-        print(f'Matriz de tamanho: {len(matriz)}')
+        print(f"Matriz de tamanho: {len(matriz)}")
         for linha in matriz:
-            print('  '.join(str(x) for x in linha))
-        print('\n')
+            print("  ".join(str(x) for x in linha))
+        print("\n")
     except ValueError as e:
         print(e)
 
@@ -32,7 +32,7 @@ def __sparse_elements(ordem: int, percent: int = 20):
     :param percent: Percentual inteiro de nao nulos
     :return: Matriz em estrutura de lista de listas
     """
-    _length = round(ordem ** 2 * percent / 100)
+    _length = round(ordem**2 * percent / 100)
     values = list(np.random.randint(low=1, high=9, size=_length))
     rows = list(np.random.randint(low=0, high=ordem, size=_length))
     columns = list(np.random.randint(low=0, high=ordem, size=_length))
@@ -71,8 +71,8 @@ def salva_arquivo(element: List, name: str):
     :param name: Nome do arquivo
     :return: None
     """
-    with open(name, 'w', encoding='utf-8') as f:
-        f.writelines('\n'.join(str(x) for x in element))
+    with open(name, "w", encoding="utf-8") as f:
+        f.writelines("\n".join(str(x) for x in element))
 
 
 def imprime_comparativos_arquivo(name_arq_1: str, name_arq_2: str):
@@ -85,8 +85,10 @@ def imprime_comparativos_arquivo(name_arq_1: str, name_arq_2: str):
     try:
         size_file_1 = os.path.getsize(name_arq_1)
         size_file_2 = os.path.getsize(name_arq_2)
-        comparativo = 100 - (min(size_file_1, size_file_2) * 100 / max(size_file_1, size_file_2))
-        print(f'Arquivo maior é {comparativo}% maior que o outro')
+        comparativo = 100 - (
+            min(size_file_1, size_file_2) * 100 / max(size_file_1, size_file_2)
+        )
+        print(f"Arquivo maior é {comparativo}% maior que o outro")
     except Exception as e:
         print(e.__str__())
 
@@ -114,8 +116,8 @@ def solucao_problema():
     # cria matriz esparsa a partir da lista de elementos
     _matrix = __cria_matriz_quadrada(ordem_matriz, _sparse_elements)
     # define nome dos arquivos
-    filename_matrix = 'arquivoA.txt'
-    filename_sparse_elements = 'arquivoB.txt'
+    filename_matrix = "arquivoA.txt"
+    filename_sparse_elements = "arquivoB.txt"
     # salva matriz e lista de elementos nos respectivos arquivos
     salva_arquivo(_matrix, filename_matrix)
     salva_arquivo(_sparse_elements, filename_sparse_elements)
@@ -126,8 +128,8 @@ def solucao_problema():
     # atualiza a matriz a partir da segunda lista
     _matrix = atualiza_matriz(_matrix, _sparse_elements_2)
     # salva a matriz atualizada
-    salva_arquivo(_matrix, 'arquivoC.txt')
+    salva_arquivo(_matrix, "arquivoC.txt")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solucao_problema()

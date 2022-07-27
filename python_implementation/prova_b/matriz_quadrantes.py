@@ -13,8 +13,8 @@ def __imprime_matriz(matriz: List[List[str]]) -> None:
     try:
         # print(f'Matriz de tamanho: {len(matriz)}')
         for linha in matriz:
-            print('  '.join(linha))
-        print('\n')
+            print("  ".join(linha))
+        print("\n")
     except ValueError as e:
         print(e)
 
@@ -28,10 +28,10 @@ def __define_tamanho(msg: str) -> int:
     """
     while True:
         try:
-            tamanho = int(input(f'{msg}: '))
+            tamanho = int(input(f"{msg}: "))
             break
         except ValueError:
-            print('O valor informado não é um inteiro!')
+            print("O valor informado não é um inteiro!")
     return tamanho
 
 
@@ -43,12 +43,12 @@ def __define_matriz() -> List[List[str]]:
     """
     # print('MATRIZ MAIOR')
     _tamanho = __define_tamanho(
-        msg=f'Defina a ordem de uma matriz quadrada (a partir de 10)',
+        msg="Defina a ordem de uma matriz quadrada (a partir de 10)",
     )
     while _tamanho < 10:
-        print(f'Valor informado menor que 10!')
+        print("Valor informado menor que 10!")
         _tamanho = __define_tamanho(
-            msg=f'Defina a ordem de uma matriz quadrada (a partir de 10)',
+            msg="Defina a ordem de uma matriz quadrada (a partir de 10)",
         )
     _matriz = __cria_matriz_quadrada(_tamanho)
     return _matriz
@@ -67,7 +67,7 @@ def __cria_matriz_quadrada(tamanho: int, i: int = 0):
         return matriz
     else:
         for c in range(tamanho):
-            linha.append(' ')
+            linha.append(" ")
         matriz.append(linha)
         for c in range(tamanho):
             # verifica posicoes
@@ -77,13 +77,13 @@ def __cria_matriz_quadrada(tamanho: int, i: int = 0):
             abaixo_diagonal_principal = i > c
 
             if acima_diagonal_principal and acima_diagonal_secundaria:
-                matriz[i][c] = 'X'
+                matriz[i][c] = "X"
             elif abaixo_diagonal_principal and acima_diagonal_secundaria:
-                matriz[i][c] = 'B'
+                matriz[i][c] = "B"
             elif acima_diagonal_principal and abaixo_diagonal_secundaria:
-                matriz[i][c] = 'A'
+                matriz[i][c] = "A"
             elif abaixo_diagonal_principal and abaixo_diagonal_secundaria:
-                matriz[i][c] = 'Y'
+                matriz[i][c] = "Y"
         return __cria_matriz_quadrada(tamanho, i + 1)
 
 
@@ -92,5 +92,5 @@ def solucao_problema():
     __imprime_matriz(matriz_maior)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solucao_problema()

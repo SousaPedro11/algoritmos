@@ -8,7 +8,8 @@ class CapSeisUm(Problema):
     def solv(self):
         try:
             self.n = int(input("Informe um valor inteiro: "))
-            print(f'\nAntecessor de {self.n}: {self.n - 1}')
+            print(f"\nAntecessor de {self.n}: {self.n - 1}")
             return self.n - 1
         except ValueError as e:
             print(e)
+            raise e

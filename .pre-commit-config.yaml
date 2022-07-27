@@ -10,7 +10,8 @@ repos:
     rev: 22.6.0
     hooks:
       - id: black
-        language_version: python3.10
+        name: black
+        entry: black ./ --check
         stages: [commit]
 
   - repo: https://github.com/PyCQA/flake8
@@ -26,3 +27,13 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        language: system
+        entry: pytest -v -s
+        pass_filenames: false
+        always_run: true
+        stages: [commit]

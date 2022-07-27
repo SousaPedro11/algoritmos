@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 10
@@ -19,7 +19,7 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Carro:
@@ -44,7 +44,7 @@ class Carro:
         self._combustivel = combustivel
 
     def adicionar_gasolina(self, gasolina: float):
-        print(f'Adicionando {gasolina} l de gasolina')
+        print(f"Adicionando {gasolina} l de gasolina")
         self._combustivel += gasolina
 
     def andar(self, distancia):
@@ -52,17 +52,17 @@ class Carro:
         if consumido > self.combustivel:
             percorrido = self.consumo * self.combustivel
             raise Exception(
-                f'É possível percorrer apenas {percorrido} Km com a quantidade de combustível atual')
-        print(f'Carro andou {distancia} Km')
-        print(f'Carro consumiu {consumido:.2f} l')
+                f"É possível percorrer apenas {percorrido} Km com a quantidade de combustível atual"
+            )
+        print(f"Carro andou {distancia} Km")
+        print(f"Carro consumiu {consumido:.2f} l")
         self.combustivel -= consumido
 
     def obter_gasolina(self):
-        print(f'Gasolina atual: {self.combustivel:.2f} l')
+        print(f"Gasolina atual: {self.combustivel:.2f} l")
 
 
 class Consumo:
-
     def solv(self):
         """
         Método que soluciona o problema
@@ -70,7 +70,7 @@ class Consumo:
         try:
             carro = Carro(15)
             carro.obter_gasolina()
-            print(f'Carro faz {carro.consumo} Km/l')
+            print(f"Carro faz {carro.consumo} Km/l")
             carro.adicionar_gasolina(20)
             carro.andar(100)
             carro.obter_gasolina()
@@ -78,5 +78,5 @@ class Consumo:
             print(e)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Consumo().solv()

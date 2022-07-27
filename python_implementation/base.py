@@ -10,6 +10,3 @@ class Problema(ABC):
     @abstractmethod
     def solv(self):
         raise NotImplementedError("Falta implementar")
-
-    def __str__(self) -> str:
-        return f"Problema de {self.__class__.__name__} com valor {self.n}"

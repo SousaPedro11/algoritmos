@@ -7,10 +7,10 @@ def binomial(row: int, column: int):
     """
     # linha (numerador) ou coluna (denominador) não podem ser negativos
     if row < 0 or column < 0:
-        raise ValueError('Não pode ser negativo!')
+        raise ValueError("Não pode ser negativo!")
     # denominador deve ser de 0 ao valor do numerador
     if not 0 <= column <= row:
-        raise ValueError(f'Deve ser de 0 a {row}')
+        raise ValueError(f"Deve ser de 0 a {row}")
     # inicializa o coeficiente
     coef = 1
     # varre de 0 ao minimo entre denominador e (numerador - denominador)
@@ -44,7 +44,7 @@ def print_pascal_triangle(data: list):
     # percorre as linhas
     for e in data:
         # descompacta os elementos de cada linha com um espaco entre eles
-        print(*e, sep=' ')
+        print(*e, sep=" ")
 
 
 def print_sum_each_row(data: list):
@@ -64,13 +64,13 @@ def solucao():
     """
     # monta a matriz de valores
     pascal = pascal_triangle(6)
-    print('TRIANGULO DE PASCAL')
+    print("TRIANGULO DE PASCAL")
     # imprime triangulo de pascal
     print_pascal_triangle(pascal)
-    print('\nSOMA DOS COEFICIENTES')
+    print("\nSOMA DOS COEFICIENTES")
     # calcula soma dos elementos de cada linha
     print_sum_each_row(pascal)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solucao()

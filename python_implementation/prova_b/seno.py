@@ -9,8 +9,7 @@ def fatorial(_number: int) -> int:
     :param _number: Numero base a ser calculado o fatorial.
     :return: Fatorial de _number
     """
-    return 1 if _number in (0, 1) else reduce(
-        lambda x, y: x * y, range(1, _number + 1))
+    return 1 if _number in (0, 1) else reduce(lambda x, y: x * y, range(1, _number + 1))
 
 
 def serie_seno(_angulo: float, n: int):
@@ -23,7 +22,7 @@ def serie_seno(_angulo: float, n: int):
     """
     multiplicador = -1 if n % 2 == 0 else 1
     expoente = 2 * n - 1
-    valor = _angulo ** expoente
+    valor = _angulo**expoente
     valor = multiplicador * valor / fatorial(expoente)
 
     if n == 1:
@@ -66,11 +65,11 @@ def compara_calculo_seno(_angulo: int, termos: int = 10):
     """
     m_seno = math_seno(_angulo)
     s_seno = calcula_seno(_angulo, termos)
-    print(f'Funcao math.sin({_angulo}) = {m_seno}')
-    print(f'Serie para o angulo {_angulo} com {termos} termos = {s_seno}')
-    print(f'Diferenca entre math.sin e serie = {m_seno - s_seno}')
+    print(f"Funcao math.sin({_angulo}) = {m_seno}")
+    print(f"Serie para o angulo {_angulo} com {termos} termos = {s_seno}")
+    print(f"Diferenca entre math.sin e serie = {m_seno - s_seno}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     angulo = 45
     compara_calculo_seno(angulo)

@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 01
@@ -17,12 +17,17 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class CrescimentoPopulacional:
-
-    def __init__(self, populacao_a: float = 88167, populacao_b: float = 199561, taxa_a: float = 3, taxa_b: float = 1.5):
+    def __init__(
+        self,
+        populacao_a: float = 88167,
+        populacao_b: float = 199561,
+        taxa_a: float = 3,
+        taxa_b: float = 1.5,
+    ):
         self.populacao_a = populacao_a
         self.populacao_b = populacao_b
         self.taxa_a = taxa_a / 100
@@ -38,8 +43,8 @@ class CrescimentoPopulacional:
         try:
             anos = 0
             while self.populacao_a < self.populacao_b:
-                self.populacao_a += (self.populacao_a * self.taxa_a)
-                self.populacao_b += (self.populacao_b * self.taxa_b)
+                self.populacao_a += self.populacao_a * self.taxa_a
+                self.populacao_b += self.populacao_b * self.taxa_b
                 anos += 1
             print(anos)
             return anos
@@ -48,7 +53,6 @@ class CrescimentoPopulacional:
 
 
 class TestPopulacao:
-
     def test_padrao(self):
         output = CrescimentoPopulacional().solv()
         assert output == 56
@@ -62,5 +66,5 @@ class TestPopulacao:
         assert output == 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     CrescimentoPopulacional().solv()

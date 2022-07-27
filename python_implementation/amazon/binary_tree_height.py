@@ -14,7 +14,7 @@ class BinarySearchTree:
         self.root = None
 
     def create(self, val):
-        if self.root == None:
+        if self.root is None:
             self.root = Node(val)
         else:
             current = self.root
@@ -37,16 +37,16 @@ class BinarySearchTree:
 
 
 # Enter your code here. Read input from STDIN. Print output to STDOUT
-'''
+"""
 class Node:
-      def __init__(self,info): 
-          self.info = info  
-          self.left = None  
-          self.right = None 
+      def __init__(self,info):
+          self.info = info
+          self.left = None
+          self.right = None
 
 
        // this is a node of the tree , which contains info as data, left , right
-'''
+"""
 
 
 def height(root):

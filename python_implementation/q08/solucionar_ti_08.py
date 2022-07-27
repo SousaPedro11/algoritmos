@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 08
@@ -15,19 +15,17 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Numero:
-
     def solv(self):
         """
         Método que soluciona o problema
         """
         try:
             numero = self.ler_numero()
-            print(
-                f'O numero {numero} possui {self.digitos_numero(numero)} digitos.')
+            print(f"O numero {numero} possui {self.digitos_numero(numero)} digitos.")
         except ValueError as e:
             print(e)
 
@@ -42,12 +40,12 @@ class Numero:
         numero = None
         while True:
             try:
-                numero = int(input('Numero inteiro: '))
+                numero = int(input("Numero inteiro: "))
                 break
             except ValueError:
                 continue
         return numero
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Numero().solv()

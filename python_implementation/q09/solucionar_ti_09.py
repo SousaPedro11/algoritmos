@@ -1,4 +1,4 @@
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 08
@@ -14,22 +14,21 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Numero:
-
     def solv(self):
         """
         Método que soluciona o problema
         """
         try:
-            nome = input('Nome: ')
+            nome = input("Nome: ")
             for i in range(1, len(nome) + 1):
                 print(nome[:i])
         except ValueError as e:
             print(e)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Numero().solv()

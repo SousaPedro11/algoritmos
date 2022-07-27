@@ -1,6 +1,6 @@
 from io import StringIO
 
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 01
@@ -19,7 +19,7 @@ Descricao da solucao:
     - Retorna Resultado Final
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class MediaAluno:
@@ -61,7 +61,7 @@ class MediaAluno:
         for i in range(1, num_notas + 1):
             nota = -1
             while nota < 0:
-                nota = float(input(f'Informe a nota {i}: '))
+                nota = float(input(f"Informe a nota {i}: "))
                 notas.append(nota)
         return notas
 
@@ -89,36 +89,36 @@ class MediaAluno:
             str: Resultado Final
         """
         if media < 7:
-            return 'Reprovado'
+            return "Reprovado"
         elif media >= 7 and media < 10:
-            return 'Aprovado'
-        return 'Aprovado com Distinção'
+            return "Aprovado"
+        return "Aprovado com Distinção"
 
 
 class TestMedia:
     def ler(self, monkeypatch, a, b):
-        monkeypatch.setattr('sys.stdin', StringIO(f'{a}\n{b}\n'))
+        monkeypatch.setattr("sys.stdin", StringIO(f"{a}\n{b}\n"))
 
     def test_reprovado(self, monkeypatch):
         self.ler(monkeypatch, 6.9, 7)
         output = MediaAluno().solv()
-        assert output == 'Reprovado'
+        assert output == "Reprovado"
 
     def test_aprovado(self, monkeypatch):
         self.ler(monkeypatch, 7, 7)
         output = MediaAluno().solv()
-        assert output == 'Aprovado'
+        assert output == "Aprovado"
 
     def test_aprovado_dinstincao_1(self, monkeypatch):
         self.ler(monkeypatch, 13, 7)
         output = MediaAluno().solv()
-        assert output == 'Aprovado com Distinção'
+        assert output == "Aprovado com Distinção"
 
     def test_aprovado_dinstincao_2(self, monkeypatch):
         self.ler(monkeypatch, 15, 7)
         output = MediaAluno().solv()
-        assert output == 'Aprovado com Distinção'
+        assert output == "Aprovado com Distinção"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MediaAluno().solv()

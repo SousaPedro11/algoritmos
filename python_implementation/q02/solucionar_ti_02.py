@@ -1,6 +1,6 @@
 from io import StringIO
 
-'''
+"""
 Autor: Pedro Sousa
 Data: 17/03/2021
 Numero da questao: Questão 01
@@ -21,7 +21,7 @@ Descricao da solucao:
 
 Versão do Python: 3.9.2
 Versão do Pytest: 6.2.2
-'''
+"""
 
 
 class Pessoa:
@@ -33,24 +33,18 @@ class Pessoa:
         self.estado_civil = e_civil
 
     def __str__(self):
-        return f'Nome: {self.nome}\n' \
-               f'Idade: {self.idade}\n' \
-               f'Salário: {self.salario}\n' \
-               f'Sexo: {self.sexo}\n' \
-               f'Estado Civil: {self.estado_civil}\n'
+        return (
+            f"Nome: {self.nome}\n"
+            f"Idade: {self.idade}\n"
+            f"Salário: {self.salario}\n"
+            f"Sexo: {self.sexo}\n"
+            f"Estado Civil: {self.estado_civil}\n"
+        )
 
 
 class LerDados:
-    SEXO = {
-        'f': 'Feminino',
-        'm': 'Masculino'
-    }
-    CIVIL = {
-        's': 'Separado',
-        'c': 'Casado',
-        'v': 'Viúvo',
-        'd': 'Divorciado'
-    }
+    SEXO = {"f": "Feminino", "m": "Masculino"}
+    CIVIL = {"s": "Separado", "c": "Casado", "v": "Viúvo", "d": "Divorciado"}
 
     def solv(self) -> str:
         """
@@ -65,15 +59,14 @@ class LerDados:
             salario = self._ler_salario()
             sexo = self._ler_sexo()
             e_civil = self._ler_estado_civil()
-            resultado = self._obtem_resultado(
-                nome, idade, salario, sexo, e_civil)
-            print('dados lidos com sucesso')
+            resultado = self._obtem_resultado(nome, idade, salario, sexo, e_civil)
+            print("dados lidos com sucesso")
             return resultado.__str__()
         except ValueError as e:
             print(e)
 
     def _ler_nome(self) -> str:
-        nome: str = ''
+        nome: str = ""
         while len(nome) < 4:
             nome = input("Informe um nome ('mais de 3 caracteres'): ")
         return nome
@@ -97,13 +90,13 @@ class LerDados:
         return salario
 
     def _ler_sexo(self) -> str:
-        sexo = 'a'
+        sexo = "a"
         while sexo not in self.SEXO.keys():
             sexo = input("Informe o sexo ('f' ou 'm'): ")
         return self.SEXO.get(sexo)
 
     def _ler_estado_civil(self) -> str:
-        e_civil = 'a'
+        e_civil = "a"
         while e_civil not in self.CIVIL.keys():
             e_civil = input("Informe o estado civil ('s', 'c', 'v', ou 'd'): ")
         return self.CIVIL.get(e_civil)
@@ -115,65 +108,65 @@ class LerDados:
 
 class TestMedia:
     def ler(self, monkeypatch, valores):
-        valores = '\n'.join(valores)
-        monkeypatch.setattr('sys.stdin', StringIO(valores))
+        valores = "\n".join(valores)
+        monkeypatch.setattr("sys.stdin", StringIO(valores))
 
     def test_valido(self, monkeypatch):
-        dados = ['Pedro Sousa', '28', '4000.00', 'm', 'c']
+        dados = ["Pedro Sousa", "28", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_nome_dois_char(self, monkeypatch):
-        dados = ['pe', 'Pedro Sousa', '28', '4000.00', 'm', 'c']
+        dados = ["pe", "Pedro Sousa", "28", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_idade_negativa(self, monkeypatch):
-        dados = ['Pedro Sousa', '-5', '28', '4000.00', 'm', 'c']
+        dados = ["Pedro Sousa", "-5", "28", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_idade_nula(self, monkeypatch):
-        dados = ['Pedro Sousa', '0', '28', '4000.00', 'm', 'c']
+        dados = ["Pedro Sousa", "0", "28", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_idade_150(self, monkeypatch):
-        dados = ['Pedro Sousa', '150', '28', '4000.00', 'm', 'c']
+        dados = ["Pedro Sousa", "150", "28", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_salario_negativo(self, monkeypatch):
-        dados = ['Pedro Sousa', '28', '-1', '4000.00', 'm', 'c']
+        dados = ["Pedro Sousa", "28", "-1", "4000.00", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_sexo_invalido(self, monkeypatch):
-        dados = ['Pedro Sousa', '28', '4000.00', 'b', 'm', 'c']
+        dados = ["Pedro Sousa", "28", "4000.00", "b", "m", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
     def test_estado_civil_invalido(self, monkeypatch):
-        dados = ['Pedro Sousa', '150', '28', '4000.00', 'm', 'a', 'c']
+        dados = ["Pedro Sousa", "150", "28", "4000.00", "m", "a", "c"]
         self.ler(monkeypatch, dados)
         output = LerDados().solv()
         esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
         assert output == esperado
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     LerDados().solv()

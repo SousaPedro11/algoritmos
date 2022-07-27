@@ -19,7 +19,6 @@ import random
 
 
 class ElGamal:
-
     def __mdc(self, numero_esq, numero_dir, resto=0):
         numero_esq, numero_dir = numero_dir, numero_esq % numero_dir
         resto = numero_esq % numero_dir
@@ -64,31 +63,3 @@ class ElGamal:
         h = self.expoente_modular(p, key, q)
         pt = [chr(int(ct[i] / h)) for i in range(0, len(ct))]
         return pt
-
-
-def main():
-    el = ElGamal()
-
-    mensagem = 'Há vagas nessa joça'
-
-    # Numero muito grande
-    q = random.randint(pow(10, 20), pow(10, 50))
-    # elemento qualquer
-    g = random.randint(2, q)
-
-    # chave privada
-    key = el.gerar_chave(q)
-    h = el.expoente_modular(g, key, q)
-    print("g: ", g)
-    print("g^a : ", h)
-
-    mensagem_cifrada, p = el.criptografar_mensagem(mensagem, q, h, g)
-    elementos_mensagem_decifrada = el.decifrar(mensagem_cifrada, p, key, q)
-    mensagem_decifrada = ''.join(elementos_mensagem_decifrada)
-    print(f'Mensagem Original: {mensagem}')
-    print(f'Mensagem criptografada: {mensagem_cifrada}')
-    print(f"Mensagem decifrada: {mensagem_decifrada}")
-
-
-if __name__ == '__main__':
-    main()
