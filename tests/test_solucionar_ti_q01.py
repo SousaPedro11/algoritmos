@@ -32,5 +32,4 @@ class TestMedia:
     def test_ler_notas_as_string(self, monkeypatch):
         with pytest.raises(ValueError, match="Erro ao ler notas"):
             self.ler(monkeypatch, "a", "b")
-            output = MediaAluno().solv()
-            assert output == "Reprovado"
+            MediaAluno().solv()
