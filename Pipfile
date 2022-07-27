@@ -1,15 +1,20 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
 
 [packages]
-flask-pytest = "*"
-scipy = "*"
 numpy = "*"
+scipy = "*"
 
 [dev-packages]
-autopep8 = "*"
+black = "*"
+commitizen = "*"
+flake8 = "*"
+pre-commit = "*"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.9"

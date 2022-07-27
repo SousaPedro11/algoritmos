@@ -36,12 +36,3 @@ repos:
         pass_filenames: false
         always_run: true
         stages: [commit]
-
-  - repo: local
-    hooks:
-      - id: requirements
-        name: requirements
-        language: system
-        entry: bash -c 'poetry export -f requirements.txt --output requirements.txt'
-        pass_filenames: false
-        stages: [commit]
