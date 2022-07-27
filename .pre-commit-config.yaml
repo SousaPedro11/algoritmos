@@ -1,0 +1,47 @@
+repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.29.2
+    hooks:
+      - id: commitizen
+        name: commitizen
+        stages: [commit-msg]
+
+  - repo: https://github.com/psf/black
+    rev: 22.6.0
+    hooks:
+      - id: black
+        language_version: python3.10
+        stages: [commit]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        stages: [commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        language: system
+        entry: pytest -v -s
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+
+  - repo: local
+    hooks:
+      - id: requirements
+        name: requirements
+        language: system
+        entry: bash -c 'poetry export -f requirements.txt --output requirements.txt'
+        pass_filenames: false
+        stages: [commit]
