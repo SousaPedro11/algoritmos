@@ -1,5 +1,7 @@
 from io import StringIO
 
+import pytest
+
 from python_implementation.q01.solucionar_ti_01 import MediaAluno
 
 
@@ -26,3 +28,9 @@ class TestMedia:
         self.ler(monkeypatch, 15, 7)
         output = MediaAluno().solv()
         assert output == "Aprovado com Distinção"
+
+    def test_ler_notas_as_string(self, monkeypatch):
+        with pytest.raises(ValueError, match="Erro ao ler notas"):
+            self.ler(monkeypatch, "a", "b")
+            output = MediaAluno().solv()
+            assert output == "Reprovado"

@@ -1,5 +1,3 @@
-from io import StringIO
-
 """
 Autor: Pedro Sousa
 Data: 17/03/2021
@@ -11,7 +9,7 @@ Descriçao do problema:
     • A mensagem "Reprovado", se a média for menor do que sete;
     • A mensagem "Aprovado com Distinção", se a média for maior ou igual a dez.
 Descricao da solucao:
-    * Criei uma classe para usar testes unitários apenas chamando um método solv()
+    • Criei uma classe para usar testes unitários apenas chamando um método solv()
     com a classe instanciada.
     Os passos são:
     - Ler notas
@@ -46,6 +44,7 @@ class MediaAluno:
             return resultado
         except ValueError as e:
             print(e)
+            raise ValueError(str(e))
 
     def _ler_notas(self, num_notas: int) -> list:
         """
@@ -57,13 +56,17 @@ class MediaAluno:
         Returns:
             list: Lista de notas
         """
-        notas = []
-        for i in range(1, num_notas + 1):
-            nota = -1
-            while nota < 0:
-                nota = float(input(f"Informe a nota {i}: "))
-                notas.append(nota)
-        return notas
+        try:
+            notas = []
+            for i in range(1, num_notas + 1):
+                nota = -1
+                while nota < 0:
+                    nota = float(input(f"Informe a nota {i}: "))
+                    notas.append(nota)
+            return notas
+        except ValueError as e:
+            print(e)
+            raise ValueError("Erro ao ler notas")
 
     def _calcula_media(self, notas: list) -> float:
         """
@@ -93,32 +96,3 @@ class MediaAluno:
         elif media >= 7 and media < 10:
             return "Aprovado"
         return "Aprovado com Distinção"
-
-
-class TestMedia:
-    def ler(self, monkeypatch, a, b):
-        monkeypatch.setattr("sys.stdin", StringIO(f"{a}\n{b}\n"))
-
-    def test_reprovado(self, monkeypatch):
-        self.ler(monkeypatch, 6.9, 7)
-        output = MediaAluno().solv()
-        assert output == "Reprovado"
-
-    def test_aprovado(self, monkeypatch):
-        self.ler(monkeypatch, 7, 7)
-        output = MediaAluno().solv()
-        assert output == "Aprovado"
-
-    def test_aprovado_dinstincao_1(self, monkeypatch):
-        self.ler(monkeypatch, 13, 7)
-        output = MediaAluno().solv()
-        assert output == "Aprovado com Distinção"
-
-    def test_aprovado_dinstincao_2(self, monkeypatch):
-        self.ler(monkeypatch, 15, 7)
-        output = MediaAluno().solv()
-        assert output == "Aprovado com Distinção"
-
-
-if __name__ == "__main__":
-    MediaAluno().solv()
