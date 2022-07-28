@@ -28,10 +28,16 @@ jobs:
         with:
           requirements: requirements.txt
 
-      - name: 'Run PEP8'
+      - name: Install Dev Dependencies
+        uses: BSFishy/pip-action@v1
+        with:
+          requirements: dev-requirements.txt
+          dev: true
+
+      - name: "Run PEP8"
         uses: quentinguidee/pep8-action@v1
         with:
-          arguments: '--exclude=./app/static/*,./coleta*,./create*,./download*,./rename* --max-line-length=120'
+          arguments: "--exclude=./app/static/*,./coleta*,./create*,./download*,./rename* --max-line-length=120"
 
       - name: Test
         run: |
