@@ -33,6 +33,12 @@ jobs:
         with:
           requirements: requirements-dev.txt
 
+      - name: Black Check
+        uses: jpetrucciani/black-check@master
+        with:
+          path: .
+          black_flags: "--check -v --diff"
+
       - name: "Run PEP8"
         uses: quentinguidee/pep8-action@v1
         with:
