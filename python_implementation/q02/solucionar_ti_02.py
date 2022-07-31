@@ -1,9 +1,7 @@
-from io import StringIO
-
 """
 Autor: Pedro Sousa
 Data: 17/03/2021
-Numero da questao: Questão 01
+Numero da questao: Questão 02
 Descriçao do problema:
     Faça um programa que leia e valide os dados abaixo.
     O programa só deve terminar, mostrando a mensagem de ‘dados lidos com sucesso’,
@@ -64,6 +62,7 @@ class LerDados:
             return resultado.__str__()
         except ValueError as e:
             print(e)
+            raise e
 
     def _ler_nome(self) -> str:
         nome: str = ""
@@ -77,7 +76,7 @@ class LerDados:
             try:
                 idade = int(input("Informe a idade (entre 0 e 150 anos): "))
             except ValueError:
-                continue
+                raise ValueError("Idade inválida")
         return idade
 
     def _ler_salario(self) -> float:
@@ -86,7 +85,7 @@ class LerDados:
             try:
                 salario = float(input("Informe o salário (maior que 0): "))
             except ValueError:
-                continue
+                raise ValueError("Salário inválido")
         return salario
 
     def _ler_sexo(self) -> str:
@@ -104,69 +103,3 @@ class LerDados:
     def _obtem_resultado(self, nome, idade, salario, sexo, e_civil) -> Pessoa:
         pessoa = Pessoa(nome, idade, salario, sexo, e_civil)
         return pessoa
-
-
-class TestMedia:
-    def ler(self, monkeypatch, valores):
-        valores = "\n".join(valores)
-        monkeypatch.setattr("sys.stdin", StringIO(valores))
-
-    def test_valido(self, monkeypatch):
-        dados = ["Pedro Sousa", "28", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_nome_dois_char(self, monkeypatch):
-        dados = ["pe", "Pedro Sousa", "28", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_idade_negativa(self, monkeypatch):
-        dados = ["Pedro Sousa", "-5", "28", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_idade_nula(self, monkeypatch):
-        dados = ["Pedro Sousa", "0", "28", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_idade_150(self, monkeypatch):
-        dados = ["Pedro Sousa", "150", "28", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_salario_negativo(self, monkeypatch):
-        dados = ["Pedro Sousa", "28", "-1", "4000.00", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_sexo_invalido(self, monkeypatch):
-        dados = ["Pedro Sousa", "28", "4000.00", "b", "m", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-    def test_estado_civil_invalido(self, monkeypatch):
-        dados = ["Pedro Sousa", "150", "28", "4000.00", "m", "a", "c"]
-        self.ler(monkeypatch, dados)
-        output = LerDados().solv()
-        esperado = "Nome: Pedro Sousa\nIdade: 28\nSalário: 4000.0\nSexo: Masculino\nEstado Civil: Casado\n"
-        assert output == esperado
-
-
-if __name__ == "__main__":
-    LerDados().solv()
